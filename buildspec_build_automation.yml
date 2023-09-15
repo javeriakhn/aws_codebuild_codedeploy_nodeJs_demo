@@ -17,7 +17,7 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push ci-cdpipeline:latest 
+      - docker push 442676927045.dkr.ecr.us-east-1.amazonaws.com/ci-cdpipeline:latest
       - echo Writing image definitions file...
       - printf '[{"name":"%s","imageUri":"%s"}]'  NodeAppContainer ci-cdpipeline:latest > imagedefinitions.json
 
