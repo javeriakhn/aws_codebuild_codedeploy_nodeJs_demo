@@ -11,8 +11,8 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
-      - docker build --no-cache -t ci-cdpipeline:latest -f Dockerfile .
-      - docker tag ci-cdpipeline:latest 442676927045.dkr.ecr.us-east-1.amazonaws.com/ci-cdpipeline:latest      
+      - docker build -t ci-cdpipeline .
+      - docker tag ci-cdpipeline:latest 442676927045.dkr.ecr.us-east-1.amazonaws.com/ci-cdpipeline:latest     
   post_build:
     commands:
       - echo Build completed on `date`
