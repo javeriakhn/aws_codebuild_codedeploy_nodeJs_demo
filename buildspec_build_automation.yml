@@ -10,17 +10,19 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - echo Building the Docker image...
-      - docker build -t ci-cdpipeline:latest -f DockerFile .
-      - docker tag ci-cdpipeline:latest $REPOSITORY_URI:latest
+      - echo Building the Docker image...          
+      - docker build -t ci-cdpipeline:latest .
+      - docker tag ci-cdpipeline:latest 442676927045.dkr.ecr.us-east-1.amazonaws.com/ci-cdpipeline:latest      
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push $REPOSITORY_URI:latest
+      - docker push ci-cdpipeline:latest 
       - echo Writing image definitions file...
-      - printf '[{"name":"%s","imageUri":"%s"}]'  NodeAppContainer $REPOSITORY_URI:latest > imagedefinitions.json
+      - printf '[{"name":"%s","imageUri":"%s"}]'  NodeAppContainer ci-cdpipeline:latest > imagedefinitions.json
 
 artifacts:
-  files: imagedefinitions.json
+  files:
+    - imagedefinitions.json
+
 
